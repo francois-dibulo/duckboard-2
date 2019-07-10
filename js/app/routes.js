@@ -8,6 +8,9 @@ NgApp.app.config(['$routeProvider',
         templateUrl: VIEW_PATH + 'main.html'
         //controller: 'MainCtrl'
       }).
+      when('/info', {
+        templateUrl: VIEW_PATH + 'info.html'
+      }).
       otherwise({
         redirectTo: '/'
       });

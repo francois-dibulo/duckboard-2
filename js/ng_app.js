@@ -22,6 +22,7 @@ var Config = {
       dependencies.push(this.dependencies[depenceny]);
     }
     dependencies.push('ngRoute');
+    dependencies.push('ngAnimate');
     return dependencies;
   }
 };
