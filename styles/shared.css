@@ -11,16 +11,16 @@ html, body {
   font-family: 'Arial', sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .hide {
   display: none;
 }
 
-.text_center {
+.text-center {
   text-align: center;
-}
-
-.total_height {
-  height: 100%;
 }
 
 .overlay {
@@ -38,47 +38,63 @@ html, body {
   ------------------------------------------------------------------------------------- */
 
 .row, .row-v {
- display: flex;
- flex-direction: row;
- flex-wrap: wrap;
- justify-content: space-around;
- align-items: center;
- align-content: space-around;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .row-v {
- flex-direction: column;
+  flex-direction: column;
 }
 
-.justify-center {
+.j-center {
   justify-content: center;
   align-content: center;
 }
 
-.justify-normal {
+.j-left-center {
+  justify-content: center;
+  align-content: flex-start;
+}
+
+.j-normal {
   justify-content: normal;
   align-content: normal;
 }
 
-.col-70 {
-  width: 70%;
+.j-baseline {
+  align-items: baseline;
 }
 
-.col-60 {
-  width: 60%;
+.j-between {
+  justify-content: space-between;
+  align-content: space-between;
 }
 
-.col-50 {
-  width: 50%;
+.j-even {
+  justify-content: space-evenly;
 }
 
-.col-40 {
-  width: 40%;
+.col-stretch {
+  /* Or remove flex-grow and set a width  */
+  flex-grow: 1;
+  align-self: stretch;
+  height: 100%;
 }
 
-.col-30 {
-  width: 30%;
-}
+.col-10 { width: 10%;}
+.col-15 { width: 15%;}
+.col-20 { width: 20%;}
+.col-25 { width: 25%;}
+.col-30 { width: 30%;}
+.col-40 { width: 40%;}
+.col-50 { width: 50%;}
+.col-60 { width: 60%;}
+.col-70 { width: 70%;}
+.col-80 { width: 80%;}
+.col-90 { width: 90%;}
+.col-100 { width: 100%;}
 
 /* ---------------------------------------------------------------------------------------
   ANIMATIONS
