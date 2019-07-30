@@ -19,6 +19,7 @@ module.exports = function(grunt) {
       css_app: {
         src: [
           'styles/shared.css',
+          'styles/ng.animate.css',
           'styles/app.css'
         ],
         dest: 'build/styles/app.min.css'
