@@ -22,7 +22,7 @@ module.exports = function(grunt) {
           'styles/ng.animate.css',
           'styles/app.css'
         ],
-        dest: 'build/styles/app.min.css'
+        dest: 'build/styles/app.css'
       }
     },
     uglify: {
@@ -38,10 +38,16 @@ module.exports = function(grunt) {
         ]
       }
     },
+    cssmin : {
+      target : {
+        src : ["build/styles/app.css"],
+        dest : "build/styles/app.min.css"
+      }
+    },
     watch: {
       scripts: {
         files: ['js/**/*.js', 'styles/**/*.css'],
-        tasks: ['concat'], //'uglify'
+        tasks: ['concat', 'uglify'],
         options: {
           spawn: false
         }
@@ -51,6 +57,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.registerTask('default', ['concat', 'uglify', 'watch']);
+  grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'watch']);
 };
