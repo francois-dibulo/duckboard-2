@@ -1,8 +1,11 @@
 var VIEW_PATH = "views/app/";
 NgApp.app = angular.module(Config.APP_NAME, Config.getDependencies());
 
-NgApp.app.config(['$routeProvider',
-  function($routeProvider) {
+NgApp.app.config(['$routeProvider', '$compileProvider',
+  function($routeProvider, $compileProvider) {
+
+    $compileProvider.debugInfoEnabled(false);
+
     $routeProvider.
       when('/', {
         templateUrl: VIEW_PATH + 'main.html'
