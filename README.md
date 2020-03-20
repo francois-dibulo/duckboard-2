@@ -18,5 +18,7 @@ This will clone the repo with all submodules and make it as an own repo:
 ```
   $ npm install
 
+  $ npm install grunt-angular-templates --save-dev
+
   $ grunt
 ```

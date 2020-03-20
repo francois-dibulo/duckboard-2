@@ -23,6 +23,7 @@ var Config = {
     }
     dependencies.push('ngRoute');
     dependencies.push('ngAnimate');
+    dependencies.push('pascalprecht.translate');
     return dependencies;
   }
 };
