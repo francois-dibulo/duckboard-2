@@ -4,7 +4,10 @@ NgApp.app = angular.module(Config.APP_NAME, Config.getDependencies());
 NgApp.app.config(['$routeProvider', '$compileProvider',
   function($routeProvider, $compileProvider) {
 
+    // https://docs.angularjs.org/guide/production
     $compileProvider.debugInfoEnabled(false);
+    $compileProvider.commentDirectivesEnabled(false);
+    $compileProvider.cssClassDirectivesEnabled(false);
 
     $routeProvider.
       when('/', {
