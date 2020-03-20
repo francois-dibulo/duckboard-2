@@ -52,6 +52,12 @@ module.exports = function(grunt) {
           spawn: false
         }
       }
+    },
+    ngtemplates:  {
+      ngApp: {
+        src: 'views/**/*.html',
+        dest: 'build/js/templates.js'
+      }
     }
   });
 
@@ -59,5 +65,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'watch']);
+  grunt.registerTask('default', ['concat', 'ngtemplates', 'uglify', 'cssmin', 'watch']);
 };
