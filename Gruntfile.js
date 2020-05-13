@@ -20,6 +20,7 @@ module.exports = function(grunt) {
         src: [
           'styles/shared.css',
           'styles/ng.animate.css',
+          'styles/**/*.css',
           'styles/app.css'
         ],
         dest: 'build/styles/app.css'
