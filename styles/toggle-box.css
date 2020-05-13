@@ -1,0 +1,75 @@
+/*
+  TOGGLE BOX
+*/
+.toggle-box {
+  position: relative;
+  width: 80px;
+  border-radius: 30px;
+  height: 44px;
+  background: #e9ecef;
+  cursor: pointer;
+}
+
+.toggle-box-state {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  background-color: #40a9f4;
+  color: #FFF;
+  top: 5px;
+  left: 5px;
+}
+
+.on .toggle-box-state {
+  animation: 0.3s toggle-on forwards ease-in;
+}
+
+.off .toggle-box-state {
+  transform: translateX(35px);
+  animation: 0.3s toggle-off forwards ease-in;
+}
+
+@keyframes toggle-off {
+  to {
+    transform: translateX(1px);
+    background-color: #616161;
+  }
+}
+
+@keyframes toggle-on {
+  to {
+    transform: translateX(35px);
+    background-color: #40a9f4;
+  }
+}
+
+.toggle-box-state-label-on, .toggle-box-state-label-off {
+  display: none;
+  font-size: 0.8rem;
+}
+
+.on .toggle-box-state-label-on {
+  animation: 0.3s toggle-on-label forwards ease-in-out;
+  animation-delay: 0.3s;
+}
+
+@keyframes toggle-on-label {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.toggle-box-state-label-off {
+  color: #a2a2a2;
+}
+
+.on .toggle-box-state-label-on, .off .toggle-box-state-label-off {
+  display: block;
+}
