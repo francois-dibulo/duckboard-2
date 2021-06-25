@@ -1,0 +1,54 @@
+<div>
+  <div class="container-fluid kanban-container">
+    <div class="row">
+
+      <div class="col kanban-col kanban-col-{{ col_key }}"
+           ng-repeat="(col_key, col) in columns track by $index">
+        <div class="text-center kanban-header">
+          <h4> {{ col.label }}</h4>
+        </div>
+        <div class="space-lg"></div>
+        <div data-key="{{col_key}}"
+              class="kanban-task-container"
+              ondragover="angular.element(this).scope().canDrop(event);"
+              ondragenter="angular.element(this).scope().onDragEnterDay(event);"
+              ondragleave="angular.element(this).scope().onDragLeaveDay(event);"
+              ondrop="angular.element(this).scope().onDropItem(event);angular.element(this).scope().onDragLeaveDay(event);">
+          <div class="kanban-task"
+               ng-repeat="(key, task) in column_tasks[col_key] track by $index"
+               draggable="true"
+               data-key="{{$index}}"
+               data-parent-key="{{col_key}}"
+               ondragstart="angular.element(this).scope().onDrag(event)"
+               >
+               <!-- ondragend="angular.element(this).scope().onDragEnd(event)" -->
+            <div class="row">
+              <div class="col-8">
+                <a href="#project-{{task.project_key}}" target="_self" class="kanban-project-link">
+                  <small class="text-light-grey font-300">{{ task.project_title }}</small>
+                </a>
+              </div>
+              <div class="col-2 text-right position-relative" ng-mouseover="task.show_stopwatch_tooltip = true" ng-mouseleave="task.show_stopwatch_tooltip = false">
+                <i class="fa fa-stopwatch text-light-grey"
+                   ng-class="{ active: task.time_tracking.active }"
+                   ></i>
+                <div class="tooltip bs-tooltip-top kanban-stopwatch-tooltip" role="tooltip" ng-class="{ show: task.show_stopwatch_tooltip }">
+                  <div class="tooltip-arrow"></div>
+                  <div class="tooltip-inner">
+                    {{ getTimetrackingHours(task) }}
+                  </div>
+                </div>
+              </div>
+              <div class="col-2" ng-click="removeTask(task, $index, col_key)">
+                <i class="fa fa-times text-light-grey"></i>
+              </div>
+            </div>
+            <h5>{{ task.title }}</h5>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

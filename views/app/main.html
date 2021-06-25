@@ -1,2 +1,21 @@
-<h2>Main</h2>
-<a href="#!/info">{{ "HELLO" | translate }} Zeus</a>
+<div ng-controller="ContextCtrl" ng-init="init()">
+  <calendar-timeline></calendar-timeline>
+  <div class="space-xlg"></div>
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-2 fs-5">
+        <contexts-list></contexts-list>
+      </div>
+
+      <div class="col-10">
+        <context-details context="current_context"></context-details>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- <a href="#!/info">{{ "HELLO" | translate }} Zeus</a> -->
+<!--     <div ng-include src="'views/app/sidepanel.html'"></div> -->

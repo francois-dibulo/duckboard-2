@@ -1,0 +1,29 @@
+<div class="container-fluid" ng-hide="isArchived(task)">
+  <div class="row project-task-row state-{{ getStateClass(task) }}">
+    <div class="col-1 project-task-icon" ng-click="archiveTask(task)">
+      <i class="fa fa-check"></i>
+    </div>
+    <div class="col-6">
+      <div class="project-tasks-title">
+        {{ task.title }}
+      </div>
+    </div>
+    <div class="col-1 text-right project-task-icon">
+      <a href="{{ task.url }}" ng-show="task.url" target="_blank">
+        <i class="fa fa-link"></i>
+      </a>
+    </div>
+    <div class="col-1 text-right project-task-icon" ng-click="showTaskInfo(task)">
+      <i class="fa fa-info-circle"></i>
+    </div>
+    <div class="col-1 text-right project-task-icon" ng-class="{ active: isOnKanban(task) }" ng-click="toggleKanbanState(task)">
+      <i class="fa fa-columns"></i>
+    </div>
+    <div class="col-1 text-right project-task-icon" ng-class="{ active: isSnoozed(task) }">
+      <i class="fa fa-clock"></i>
+      </div>
+    <div class="col-1 text-right project-task-icon" ng-click="removeTask()">
+      <i class="fa fa-times-circle text-delete-red"></i>
+    </div>
+  </div>
+</div>

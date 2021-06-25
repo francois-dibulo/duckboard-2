@@ -1,0 +1,74 @@
+<div ng-show="task">
+  <div class="modal-backdrop fade show">
+  </div>
+  <div class="modal" style="display: block">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Task info</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ng-click="close()"></button>
+        </div>
+        <div class="modal-body">
+
+          <label for="inputTaskTitle" class="form-label">Task title*</label>
+          <input type="text" class="form-control single-line" ng-model="task.title">
+
+          <div class="space-lg"></div>
+
+          <label for="inputTaskUrl" class="form-label">URL (Optional)</label>
+          <input type="text" class="form-control single-line" ng-model="task.url" placeholder="https://...">
+
+          <div class="space-lg"></div>
+
+          <label for="inputTaskComment" class="form-label">Comment (Optional)</label>
+          <textarea type="text" class="form-control" id="inputTaskComment" ng-model="task.comment"></textarea>
+
+          <div ng-show="task.time_tracking.timestamps.length">
+            <div class="space-lg"></div>
+            <h5>Time tracking</h5>
+            <div class="space-md"></div>
+            <div class="row">
+              <div class="col-4">
+                Total:
+              </div>
+              <div class="col-8 text-right">
+                {{ getTotalTime(task) }}
+              </div>
+            </div>
+            <div class="space-md"></div>
+           <!--                 <span class="underline-dotted pointer-curser">{{ getFormattedDate(ts[0]) }}</span> to <span class="underline-dotted pointer-curser">{{ getFormattedDate(ts[1]) }}</span> -->
+
+            <div ng-repeat="ts in task.time_tracking.timestamps track by $index"
+                class="row mb-1">
+              <div class="col-2">
+                <button class="btn btn-danger" ng-click="removeTimeEntry(task, $index)">
+                  <i class="fa fa-times"></i>
+                </button>
+              </div>
+              <div class="col-4">
+                <input type="datetime-local" value="{{ getDateTimeValue(ts.start_ts) }}"
+                       ng-model="ts.start_date"
+                       ng-change="updateTime(task, ts, 'start_ts', 'start_date')"
+                       class="form-control">
+              </div>
+              <div class="col-4">
+                <input type="datetime-local" value="{{ getDateTimeValue(ts.end_ts) }}" class="form-control"
+                      ng-model="ts.end_date"
+                      ng-change="updateTime(task, ts, 'end_ts', 'end_date')">
+              </div>
+              <div class="col-2">
+                <span class="badge bg-primary rounded-pill">
+                  {{ getHoursDelta(ts) }}
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" ng-click="close()">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

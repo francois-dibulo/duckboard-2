@@ -1,0 +1,213 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-bottom: 3rem;
+}
+* {
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+/* .text-center { text-align: center; } */
+.hidden {
+  display: none;
+}
+.lh-15 {
+  line-height: 1.5;
+}
+.space-sm {
+  width: 100%;
+  height: 0.5rem;
+}
+.space-md {
+  width: 100%;
+  height: 1rem;
+}
+.space-lg {
+  width: 100%;
+  height: 1.5rem;
+}
+.space-xlg {
+  width: 100%;
+  height: 3rem;
+}
+.h-full {
+  height: 100%;
+}
+.display-inline-block {
+  display: inline-block;
+}
+.text-right {
+  text-align: right;
+}
+.font-300 {
+  font-weight: 300;
+}
+.underline-dotted {
+  border-bottom: 1px dotted #9e9e9e;
+}
+.pointer-curser {
+  cursor: pointer;
+}
+/*
+  COLORS
+*/
+.list-group .active {
+  color: #2196f3;
+}
+.text-light-grey {
+  color: #9e9e9e;
+}
+.text-delete-red {
+  color: #e57373;
+}
+/*
+  BOOTSTRAP OVERWRITE
+*/
+.form-control.single-line {
+  border: 0;
+  border-bottom: 1px solid #e4e4e4;
+  border-radius: 0;
+}
+.modal-dialog {
+  max-width: 700px;
+}
+/*
+  Calendar
+*/
+.calendar {
+  height: 50px;
+  max-width: 100vw;
+  overflow: hidden;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+.calendar-item {
+  border-bottom: 1px solid #ececec;
+  border-right: 1px solid #ececec;
+  background: #fafafa;
+  color: #6f6f6f;
+  font-size: 0.8rem;
+}
+.calendar-item.head {
+  background: #b39ddb;
+  color: #fff;
+}
+.calendar-item.active {
+  font-weight: bold;
+  border-bottom: 2px solid #616161;
+}
+.calendar-item.weekend {
+  background: #f5f5f5;
+}
+.calendar-notification {
+  left: 0px;
+  background: #eaeaea;
+  color: #9e9e9e;
+  width: 100%;
+  bottom: 0;
+}
+/*
+  KANBAN
+*/
+.drag-enter-allowed {
+  background: #F6F6F6;
+}
+.kanban-header {
+  border-bottom-color: #CCC;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  padding-bottom: 0.5rem;
+}
+.kanban-task-container {
+  height: 100%;
+}
+.kanban-task {
+  padding: 0.5rem;
+  box-shadow: 0px 0px 3px 0px #9c9c9c;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+/* Blocked */
+.kanban-col-blocked .kanban-header {
+  border-bottom-color: #ffd54f;
+}
+.kanban-col-blocked .kanban-task {
+  background: #ffd54f;
+}
+/* Progress */
+.kanban-col-progress .kanban-header {
+  border-bottom-color: #2196f3;
+}
+.kanban-col-progress .kanban-task {
+  background: #2196f3;
+}
+/* Done */
+.kanban-col-done .kanban-task {
+  background: #aed581;
+}
+.kanban-col-done .kanban-header {
+  border-bottom-color: #aed581;
+}
+/* Grey Color */
+.kanban-col-blocked .text-light-grey,
+.kanban-col-progress .text-light-grey {
+  color: #FFF;
+}
+.kanban-project-link {
+  text-decoration: none;
+  color: #9e9e9e;
+}
+/* Stopwatch */
+.kanban-col-progress .fa-stopwatch {
+  opacity: 0.5;
+}
+.kanban-col-progress .fa-stopwatch.active {
+  opacity: 1;
+  color: #f44336;
+}
+/* Tooltip */
+.kanban-stopwatch-tooltip {
+  top: -41px;
+  left: -44px;
+  width: 140px;
+}
+.kanban-stopwatch-tooltip .tooltip-arrow {
+  left: 60px;
+}
+/*
+  TASKS
+*/
+.project-task-row {
+  padding: 0.8em 0;
+  box-shadow: 0 0 2px 0 #bbbbbb;
+  margin-bottom: 0.5rem;
+}
+.project-task-row.state-blocked {
+  background-color: #ffd54f;
+}
+.project-task-row.state-done .project-task-icon .fa-check {
+  color: #aed581;
+}
+.project-tasks-title {
+  font-size: 1.1rem;
+}
+.project-task-icon {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #9e9e9e;
+}
+.project-task-icon.active .fa {
+  color: #2196f3;
+}

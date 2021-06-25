@@ -1,0 +1,84 @@
+/*
+  KANBAN
+*/
+
+.drag-enter-allowed {
+  background: @lighter-grey;
+}
+
+.kanban-header {
+  border-bottom-color: #CCC;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  padding-bottom: 0.5rem;
+}
+
+.kanban-task-container {
+  height: 100%;
+}
+
+.kanban-task {
+  padding: 0.5rem;
+  box-shadow: 0px 0px 3px 0px #9c9c9c;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* Blocked */
+.kanban-col-blocked .kanban-header {
+  border-bottom-color: @blocked;
+}
+
+.kanban-col-blocked .kanban-task {
+  background: @blocked;
+}
+
+/* Progress */
+.kanban-col-progress .kanban-header {
+  border-bottom-color: @progress;
+}
+
+.kanban-col-progress .kanban-task {
+  background: @progress;
+}
+
+/* Done */
+.kanban-col-done .kanban-task {
+  background: @done;
+}
+
+.kanban-col-done .kanban-header {
+  border-bottom-color: @done;
+}
+
+/* Grey Color */
+.kanban-col-blocked .text-light-grey,
+.kanban-col-progress .text-light-grey {
+  color: #FFF;
+}
+
+.kanban-project-link {
+  text-decoration: none;
+  color: @light-grey;
+}
+
+/* Stopwatch */
+.kanban-col-progress .fa-stopwatch {
+  opacity: 0.5;
+}
+
+.kanban-col-progress .fa-stopwatch.active {
+  opacity: 1;
+  color: #f44336;
+}
+
+/* Tooltip */
+.kanban-stopwatch-tooltip {
+  top: -41px;
+  left: -44px;
+  width: 140px;
+}
+
+.kanban-stopwatch-tooltip .tooltip-arrow {
+  left: 60px;
+}

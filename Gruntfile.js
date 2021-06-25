@@ -39,6 +39,16 @@ module.exports = function(grunt) {
         ]
       }
     },
+    less: {
+      development: {
+        options: {
+          paths: ['styles']
+        },
+        files: {
+          'styles/app-less.css': 'styles/app.less'
+        }
+      }
+    },
     cssmin : {
       target : {
         src : ["build/styles/app.css"],
@@ -47,8 +57,8 @@ module.exports = function(grunt) {
     },
     watch: {
       scripts: {
-        files: ['js/**/*.js', 'styles/**/*.css'],
-        tasks: ['concat', 'uglify'],
+        files: ['js/**/*.js', 'styles/**/*.css', 'styles/**/*.less', 'views/app/**/**.html'],
+        tasks: ['less', 'concat', 'ngtemplates'], //  'uglify',
         options: {
           spawn: false
         }
@@ -64,8 +74,9 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-angular-templates');
-  grunt.registerTask('default', ['concat', 'ngtemplates', 'uglify', 'cssmin', 'watch']);
+  grunt.registerTask('default', ['concat', 'ngtemplates', 'uglify', 'less', 'cssmin', 'watch']);
 };

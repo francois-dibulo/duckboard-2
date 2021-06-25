@@ -1,0 +1,36 @@
+<div ng-show="{{ context == null }}" class="text-center">
+  Add a context first {{ context }}
+</div>
+
+<div ng-show="{{ context != null }}">
+  <h2>/{{ context.title }}</h2>
+  <div class="space-lg"></div>
+
+  <kanban-board items="projects"></kanban-board>
+
+  <div class="space-xlg"></div>
+
+  <div ng-repeat="(project_key, project) in projects track by $index">
+    <project-details project="project"></project-details>
+  </div>
+
+
+  <div class="space-lg"></div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-6">
+        <button class="btn btn-danger" ng-click="removeContext(context)">
+          <i class="fa fa-trash"></i> Delete context
+        </button>
+      </div>
+      <div class="col-6 text-right">
+        <button class="btn btn-primary" ng-click="addProject()">
+          <i class="fa fa-plus"></i> Add Project
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div>

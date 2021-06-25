@@ -12,6 +12,28 @@ function shuffleArray(array) {
   return array;
 }
 
+/**
+ * Returns random string which can be used for ids
+ * @return {String}
+ */
+function randomId(chars) {
+  chars = chars || 15;
+  return (Math.random() + 1).toString(36).substring(2, chars);
+}
+
+/**
+ * Returns random string which can be used for unique-ids.
+ * @return {String}
+ */
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+}
+
 function isMobile() {
  if( navigator.userAgent.match(/Android/i)
  || navigator.userAgent.match(/webOS/i)
@@ -43,4 +65,24 @@ function parseQuery(qstr) {
       query[decodeURIComponent(b[0])] = decodeURIComponent(b[1] || '');
   }
   return query;
+}
+
+// 18000000 = 5
+// 93600000 = 26
+
+function msToTime(duration) {
+  var milliseconds = Math.floor((duration % 1000) / 100),
+    seconds = Math.floor((duration / 1000) % 60),
+    minutes = Math.floor((duration / (1000 * 60)) % 60),
+    hours = Math.floor((duration / (1000 * 60 * 60)));
+
+  // hours_str = (hours < 10) ? "0" + hours : hours;
+  // minutes_str = (minutes < 10) ? "0" + minutes : minutes;
+  // seconds_str = (seconds < 10) ? "0" + seconds : seconds;
+
+  return {
+    hours: hours,
+    minutes: minutes,
+    seconds: seconds
+  };
 }

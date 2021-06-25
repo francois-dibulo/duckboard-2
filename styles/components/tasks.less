@@ -1,0 +1,31 @@
+/*
+  TASKS
+*/
+
+.project-task-row {
+  padding: 0.8em 0;
+  box-shadow: 0 0 2px 0 #bbbbbb;
+  margin-bottom: 0.5rem;
+}
+
+.project-task-row.state-blocked {
+  background-color: @blocked;
+}
+
+.project-task-row.state-done .project-task-icon .fa-check {
+  color: @done;
+}
+
+.project-tasks-title {
+  font-size: 1.1rem;
+}
+
+.project-task-icon {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: @light-grey;
+}
+
+.project-task-icon.active .fa {
+  color: @active-blue;
+}

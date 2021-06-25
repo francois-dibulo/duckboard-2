@@ -1,0 +1,24 @@
+<div>
+
+
+  <ul class="list-group">
+    <li ng-repeat="(key, ctx) in contexts" 
+        class="pointer-curser">
+      <div class="row">
+        <div class="col-12" ng-class="{ active: ctx.active }" ng-click="onContextClick(ctx)">
+          {{ ctx.title }}
+        </div>
+        <!-- <div class="col-2" ng-click="removeContext(ctx)">
+          <i class="fa fa-times"></i>
+        </div> -->
+      </div>
+    </li>
+  </ul>
+
+  <div class="space-lg"></div>
+
+  <button class="btn btn-primary" ng-click="addContext()">
+    <i class="fa fa-plus"></i> Add Context
+  </button>
+
+</div>

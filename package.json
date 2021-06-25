@@ -1,12 +1,13 @@
 {
-  "name": "airconsole-game",
-  "header": "AirConsole Game",
+  "name": "duckboard",
+  "header": "Duckboard",
   "version": "1.0.0",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^1.2.0",
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-less": "^3.0.0",
     "grunt-contrib-nodeunit": "^2.1.0",
     "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-watch": "^1.1.0"

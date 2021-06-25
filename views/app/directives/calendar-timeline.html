@@ -1,0 +1,31 @@
+<div>
+  <div class="container-fluid">
+    <div class="calendar row align-items-center align-items-stretch">
+      <div class="col text-center calendar-item head">
+        <div class="row align-items-center h-full fs-6 text-center">
+          <div class="col">
+            <img src="assets/images/duck.png" style="width: 30px;">
+          </div>
+        </div>
+      </div>
+
+      <div ng-repeat="date in dates track by $index"
+           class="col text-center calendar-item"
+           ng-class="{ active: date.is_today, weekend: date.is_weekend }">
+        <div class="row align-items-center h-full">
+          <div class="position-relative">
+            <div class=""></div>
+            <div class="">{{ date.weekday_str }} {{ date.date_str }}</div>
+            <div class="">
+              <!-- <div class="calendar-notification position-absolute small">
+                <i class="fa fa-phone"></i> 2&nbsp;&nbsp;&nbsp;
+                <i class="fa fa-clock"></i> 1
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

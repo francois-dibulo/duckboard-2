@@ -1,0 +1,52 @@
+<div class="container-fluid" id="project-{{ project.key }}">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="display-6">{{ project.title }}</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-right">
+      <span class="display-inline-block me-md-3 pointer-curser" ng-click="removeProject(project)">
+        <i class="fa fa-times-circle"></i> Delete
+      </span>
+      <span class="display-inline-block me-md-3 pointer-curser">
+        <i class="fa fa-archive"></i> Archive
+      </span>
+      <span class="display-inline-block pointer-curser">
+        <i class="fa fa-history"></i> History
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+
+      <div class="space-lg"></div>
+      <div ng-repeat="task_key in project.tasks">
+        <project-task key="task_key" project="project"></project-task>
+      </div>
+
+      <div class="space-lg"></div>
+
+      <!-- TASK FORM -->
+      <div class="container-fluid">
+        <form class="row g-3">
+          <div class="col-5">
+            <label for="taskTitle" class="visually-hidden">Taks</label>
+            <input type="text" class="form-control" placeholder="Task title" ng-model="form.task.title">
+          </div>
+          <div class="col-5">
+            <label for="taskUrl" class="visually-hidden">Url (optional)</label>
+            <input type="text" class="form-control" placeholder="Url (optional)" ng-model="form.task.url">
+          </div>
+          <div class="col-2">
+            <button class="btn btn-primary mb-3" ng-click="addTaskToProject(project)">Add task</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<div class="space-xlg"></div>
+<task-info></task-info>

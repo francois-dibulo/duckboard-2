@@ -5,7 +5,7 @@ NgApp.app.config(['$routeProvider', '$compileProvider', '$translateProvider',
   function($routeProvider, $compileProvider, $translateProvider) {
 
     // https://docs.angularjs.org/guide/production
-    $compileProvider.debugInfoEnabled(false);
+    $compileProvider.debugInfoEnabled(true);
     $compileProvider.commentDirectivesEnabled(false);
     $compileProvider.cssClassDirectivesEnabled(false);
 
