@@ -1,9 +1,9 @@
-<div class="container-fluid" ng-hide="isArchived(task)">
+<div class="container-fluid" ng-hide="isArchived(task)" ng-class="{ child: child }">
   <div class="row project-task-row state-{{ getStateClass(task) }}">
     <div class="col-1 project-task-icon" ng-click="archiveTask(task)">
       <i class="fa fa-check"></i>
     </div>
-    <div class="col-6">
+    <div class="col-4">
       <div class="project-tasks-title">
         {{ task.title }}
       </div>
@@ -13,6 +13,9 @@
         <i class="fa fa-link"></i>
       </a>
     </div>
+    <div class="col-1 text-right project-task-icon" ng-click="addChildTask(task)">
+      <i class="fa fa-plus-circle text-done-green" ng-hide="child"></i>
+    </div>
     <div class="col-1 text-right project-task-icon" ng-click="showTaskInfo(task)">
       <i class="fa fa-info-circle"></i>
     </div>
@@ -21,9 +24,13 @@
     </div>
     <div class="col-1 text-right project-task-icon" ng-class="{ active: isSnoozed(task) }">
       <i class="fa fa-clock"></i>
-      </div>
+    </div>
     <div class="col-1 text-right project-task-icon" ng-click="removeTask()">
       <i class="fa fa-times-circle text-delete-red"></i>
     </div>
   </div>
+</div>
+
+<div ng-repeat="task_key in task.children">
+  <project-task key="task_key" project="project" child="true"></project-task>
 </div>

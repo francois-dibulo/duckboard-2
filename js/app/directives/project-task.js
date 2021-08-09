@@ -1,6 +1,6 @@
 NgApp.directives.directive("projectTask", [
-  'ContextService', 'TasksService',
-  function(ContextService, TasksService) {
+  'ContextService', 'TasksService', '$timeout',
+  function(ContextService, TasksService, $timeout) {
   return {
     // E = element, A = attribute, C = class, M = comment
     restrict: 'EA',
@@ -10,13 +10,27 @@ NgApp.directives.directive("projectTask", [
     scope: {
       // @ reads the attribute value, = provides two-way binding, & works with functions
       key: '=',
+      project: '=',
+      child: '@'
     },
     // Embed a custom controller in the directive
     controller: function($scope) {
       $scope.task = TasksService.getTaskByKey($scope.key);
 
-      $scope.removeTask = function() {
-        $scope.$emit('TASK_REMOVE', $scope.task.key);
+      if (!$scope.task) {
+        console.warn("No task :: removing", $scope.key, $scope.task, $scope.project);
+        $timeout(function() {
+          $scope.removeTask($scope.key);
+        }, 0);
+      }
+
+      $scope.removeTask = function(key) {
+        key = key || $scope.task.key;
+        $scope.$emit('TASK_REMOVE', key);
+      };
+
+      $scope.addChildTask = function(parent_task) {
+        $scope.$emit('TASK_ADD_CHILD', parent_task);
       };
 
       $scope.isOnKanban = function(task) {
@@ -42,7 +56,7 @@ NgApp.directives.directive("projectTask", [
       };
 
       $scope.archiveTask = function(task) {
-        TasksService.setTasksState(task, TasksService.STATE.ARCHIVED);
+        TasksService.archiveTask(task);
         $scope.$emit('TASK_KANBAN_UPDATE');
       };
 

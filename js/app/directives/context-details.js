@@ -16,6 +16,7 @@ NgApp.directives.directive("contextDetails", [
       $scope.projects = [];
 
       var init = function(ctx) {
+        ctx = ctx || $scope.context;
         $scope.projects = ProjectService.getProjectsForContext(ctx);
       };
 
@@ -24,6 +25,7 @@ NgApp.directives.directive("contextDetails", [
       });
 
       $scope.$on('TASK_KANBAN_UPDATE', function() {
+        init();
         $scope.$broadcast('KANBAN_UPDATE');
       });
 

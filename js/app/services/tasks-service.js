@@ -52,11 +52,17 @@ NgApp.services.factory('TasksService', ['$http', '$q', 'DataStorageService',
     this.updateStorage();
   };
 
-  service.addTask = function(opts) {
-    var id = guid(); // TODO get from backend
+  service.archiveTask = function(task) {
+    task.archived_at = new Date().getTime();
+    this.setTasksState(task, TASK_STATE.ARCHIVED);
+  };
+
+  service.addTask = function(opts, parent_key) {
+    var id = guid();
     var entity = {
       key: id,
       created_at: new Date().getTime(),
+      archived_at: null,
       title: opts.title,
       url: opts.url,
       state: TASK_STATE.IDLE,
@@ -66,7 +72,8 @@ NgApp.services.factory('TasksService', ['$http', '$q', 'DataStorageService',
         timestamps: []
       },
       snoozed: null,
-      parent_id: null,
+      parent_key: parent_key || null,
+      children: [],
       events: null
     };
     this.tasks[id] = entity;
@@ -75,6 +82,18 @@ NgApp.services.factory('TasksService', ['$http', '$q', 'DataStorageService',
   };
 
   service.removeTask = function(id, no_save) {
+    var task = this.tasks[id];
+
+    // Is a child
+    if (task && this.isChild(task.key)) {
+      this.removeChildTask(task);
+    }
+
+    // Has children
+    if (task && task.children && task.children.length) {
+      this.removeTasksByKey(task.children);
+    }
+
     delete this.tasks[id];
     if (!no_save) {
       this.updateStorage();
@@ -85,6 +104,36 @@ NgApp.services.factory('TasksService', ['$http', '$q', 'DataStorageService',
     for (var i = task_keys.length - 1; i >= 0; i--) {
       this.removeTask(task_keys[i], true);
     }
+  };
+
+  service.addChildTask = function(parent_task, child_task) {
+    if (!parent_task.children) {
+      parent_task.children = [];
+    }
+
+    if (parent_task.children.indexOf(child_task.key) === -1) {
+      child_task.parent_key = parent_task.key;
+      parent_task.children.push(child_task.key);
+    }
+  };
+
+  service.removeChildTask = function(child_task) {
+    var parent_task = this.getTaskByKey(child_task.parent_key);
+    if (parent_task && parent_task.children) {
+      var index = parent_task.children.indexOf(child_task.key);
+      if (index > -1) {
+        parent_task.children.splice(index, 1);
+      }
+    }
+    child_task.parent_key = null;
+  };
+
+  service.isChild = function(task_key) {
+    var task = this.getTaskByKey(task_key);
+    if (task && task.parent_key !== undefined) {
+      return task.parent_key !== null;
+    }
+    return false;
   };
 
   service.startTimeTracking = function(task) {
