@@ -6,6 +6,9 @@
   </div>
   <div class="row">
     <div class="col-12 text-right">
+      <span class="display-inline-block me-md-3 pointer-curser">
+        <input type="checkbox" name="" ng-model="project.include_all" ng-change="onProjectChangeIncludeAll(project)"> Include in 'All'
+      </span>
       <span class="display-inline-block me-md-3 pointer-curser" ng-click="removeProject(project)">
         <i class="fa fa-times-circle"></i> Delete
       </span>
@@ -22,16 +25,20 @@
 
       <div class="space-lg"></div>
       <div ng-repeat="task_key in project.tasks">
-        <project-task key="task_key" project="project"></project-task>
+        <project-task key="task_key" project="project" ng-if="isNotChildTask(task_key)"></project-task>
       </div>
 
       <div class="space-lg"></div>
 
       <!-- TASK FORM -->
       <div class="container-fluid">
+        <div ng-show="form.task.parent" class="">
+          <i class="fa fa-times-circle" ng-click="removeFormParent()"></i>
+          {{ form.task.parent.title }} >
+        </div>
         <form class="row g-3">
           <div class="col-5">
-            <label for="taskTitle" class="visually-hidden">Taks</label>
+            <label for="taskTitle" class="visually-hidden">Task</label>
             <input type="text" class="form-control" placeholder="Task title" ng-model="form.task.title">
           </div>
           <div class="col-5">

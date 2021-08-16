@@ -69,6 +69,9 @@ h6 {
 .text-light-grey {
   color: #9e9e9e;
 }
+.text-done-green {
+  color: #aed581;
+}
 .text-delete-red {
   color: #e57373;
 }
@@ -82,6 +85,10 @@ h6 {
 }
 .modal-dialog {
   max-width: 700px;
+}
+.container-fluid.child {
+  width: 96%;
+  margin-left: 4%;
 }
 /*
   Calendar
@@ -198,7 +205,16 @@ h6 {
   background-color: #ffd54f;
 }
 .project-task-row.state-done .project-task-icon .fa-check {
-  color: #aed581;
+  color: #198754;
+}
+.project-task-row.state-done {
+  background-color: #aed581;
+}
+.project-task-row.state-next {
+  border-left: 5px solid #9e9e9e;
+}
+.project-task-row.state-progress {
+  border-left: 5px solid #2196f3;
 }
 .project-tasks-title {
   font-size: 1.1rem;

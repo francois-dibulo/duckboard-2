@@ -2,8 +2,10 @@ NgApp.services.factory('ContextService', ['$http', '$q', 'DataStorageService', '
     function ($http, $q, DataStorageService, ProjectService) {
 
   var DATA_STORAGE_KEY = "context";
+  var CONTEXT_ALL_KEY = "all";
 
   var service = {
+    CONTEXT_ALL_KEY: CONTEXT_ALL_KEY,
     current_context_key: null,
     contexts: {},
   };
@@ -37,15 +39,19 @@ NgApp.services.factory('ContextService', ['$http', '$q', 'DataStorageService', '
     }
   };
 
-  service.addContext = function(title) {
-    var ctx_id = guid(); // TODO get from backend
+  service.createContextEntity = function(title, id) {
+    var ctx_id = id || guid();
     var ctx = {
       key: ctx_id,
       title: title,
       projects: [],
       active: false
     };
-    this.contexts[ctx_id] = ctx;
+    return ctx;
+  };
+
+  service.addContext = function(title) {
+    this.contexts[ctx_id] = this.createContextEntity(title);
     this.setCurrentContext(ctx_id);
     this.updateStorage();
     return ctx;
@@ -93,6 +99,9 @@ NgApp.services.factory('ContextService', ['$http', '$q', 'DataStorageService', '
     var active_ctx_key = undefined;
     service.contexts = {};
 
+    // Create the "All" context
+    service.contexts[CONTEXT_ALL_KEY] = service.createContextEntity("All", CONTEXT_ALL_KEY);
+
     for (var ctx_key in data) {
       var ctx = data[ctx_key];
       service.contexts[ctx_key] = ctx;
@@ -105,7 +114,7 @@ NgApp.services.factory('ContextService', ['$http', '$q', 'DataStorageService', '
       service.setCurrentContext(active_ctx_key);
     }
 
-    console.log(service)
+    console.log(service);
   };
 
   service.init = function() {

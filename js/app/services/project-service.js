@@ -2,6 +2,7 @@ NgApp.services.factory('ProjectService', ['$http', '$q', 'DataStorageService', '
     function ($http, $q, DataStorageService, TasksService) {
 
   var DATA_STORAGE_KEY = "projects";
+  var CONTEXT_ALL_KEY = "all";
 
   var PROJECT_STATE = {
     IDLE: 0,
@@ -17,9 +18,20 @@ NgApp.services.factory('ProjectService', ['$http', '$q', 'DataStorageService', '
     if (!ctx) return result;
     var project_keys = ctx.projects;
 
+    var requesting_all = ctx.key === CONTEXT_ALL_KEY;
+    // "All" context is special. We require all projects
+    if (requesting_all) {
+      project_keys = Object.keys(this.projects);
+    }
+
     for (var i = 0; i < project_keys.length; i++) {
       var project = this.getProjectByKey(project_keys[i]);
       if (project) {
+
+        if (requesting_all && !project.include_all) {
+          continue;
+        }
+
         result.push(project);
       }
     }
@@ -37,7 +49,8 @@ NgApp.services.factory('ProjectService', ['$http', '$q', 'DataStorageService', '
       key: id,
       title: title,
       created_at: new Date().getTime(),
-      tasks: []
+      tasks: [],
+      include_all: true
     };
     this.projects[id] = entity;
     this.updateStorage();

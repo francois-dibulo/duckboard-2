@@ -35,7 +35,7 @@ NgApp.services.factory('CalendarTimelineService', ['$http', '$q',
       var next_year = next_date.getFullYear();
 
       var next_date_str = next_day < 10 ? "0" + next_day : next_day;
-      var next_month_str = next_month < 10 ? "0" + next_month : next_month;
+      var next_month_str = next_month < 10 ? "0" + (next_month + 1) : next_month + 1;
       var date_str = next_date_str + "." + next_month_str;
 
       var weekday = next_date.getDay();

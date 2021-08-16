@@ -13,7 +13,19 @@
 }
 
 .project-task-row.state-done .project-task-icon .fa-check {
-  color: @done;
+  color: @done-darker;
+}
+
+.project-task-row.state-done {
+  background-color: @done;
+}
+
+.project-task-row.state-next {
+  border-left: 5px solid @light-grey;
+}
+
+.project-task-row.state-progress {
+  border-left: 5px solid @active-blue;
 }
 
 .project-tasks-title {

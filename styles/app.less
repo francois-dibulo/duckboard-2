@@ -2,6 +2,7 @@
 @progress: #2196f3;
 @blocked: #ffd54f;
 @done: #aed581;
+@done-darker: #198754;
 
 @light-grey: #9e9e9e;
 @light-middle-grey: #e4e4e4;
@@ -52,6 +53,10 @@ h1, h2, h3, h4, h5, h6 {
   color: @light-grey;
 }
 
+.text-done-green {
+  color: @done;
+}
+
 .text-delete-red {
   color: @delete-red;
 }
@@ -67,6 +72,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .modal-dialog {
   max-width: 700px;
+}
+
+.container-fluid.child {
+  width: 96%;
+  margin-left: 4%;
 }
 
 @import "components/calendar.less";
